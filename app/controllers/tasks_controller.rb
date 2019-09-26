@@ -28,6 +28,16 @@ class TasksController < ApplicationController
     return render_not_found if @task.blank?
   end
 
+  def update
+    @task = Task.find_by_id(params[:id])
+    return render_not_found if @task.blank?
+    @task.update_attributes(task_params)
+    if @task.valid?
+     redirect_to root_path
+    else
+      return render :edit, status: :unprocessable_entity
+    end
+  end
 
 
   private

@@ -4,15 +4,24 @@ RSpec.describe TasksController, type: :controller do
 
   describe "tasks#update" do
     it "should allow users to successfully update tasks" do
-    
+      task = FactoryBot.create(:task, message: "Initial Value")
+      patch :update, params: { id: task.id, task: { message: 'Changed' } }
+      expect(response).to redirect_to root_path
+      task.reload
+      expect(task.message).to eq "Changed"
     end
 
     it "should have http 404 error if the task cannot be found" do
-
+      patch :update, params: { id: "Howdy", task: { message: 'Changed' } }
+      expect(response).to have_http_status(:not_found)
     end
 
     it "should render the edit form with an http status of unprocessable_entity" do
-
+      task = FactoryBot.create(:task, message: "Initial Value")
+      patch :update, params: { id: task.id, task: { message: '' } }
+      expect(response).to have_http_status(:unprocessable_entity)
+      task.reload
+      expect(task.message).to eq "Initial Value"
     end
   end
 
