@@ -1,6 +1,19 @@
 require 'rails_helper'
 
 RSpec.describe TasksController, type: :controller do
+  describe "tasks#show action" do
+    it "should successfully show the page if the task is found" do
+      task = FactoryBot.create(:task)
+      get :show, params: { id: task.id }
+      expect(response).to have_http_status(:success)
+    end
+
+    it "should return a 404 error if the task is not found" do
+      get :show, params: { id: 'NOTHERE' }
+      expect(response).to have_http_status(:not_found)
+    end
+  end
+
   describe "tasks#index action" do
     it "should successfully show the page" do 
       get :index

@@ -6,4 +6,9 @@ FactoryBot.define do
     password { "password" }
     password_confirmation { "password" }
   end
+
+  factory :task do
+    message { "hello" }
+    association :user
+  end
 end

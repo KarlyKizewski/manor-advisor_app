@@ -1,11 +1,19 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
-  
-  def index
-  end
 
   def new
     @task = Task.new
+  end
+
+
+  def index
+  end
+
+  def show
+    @task = Task.find_by_id(params[:id])
+    if @task.blank?
+      render plain: 'Not Found', status: :not_found
+    end
   end
 
   def create
@@ -16,6 +24,8 @@ class TasksController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+
+
 
   private
 
