@@ -2,6 +2,21 @@ require 'rails_helper'
 
 RSpec.describe TasksController, type: :controller do
 
+  describe "tasks#destroy action" do
+    it "should allow a user to destroy tasks" do
+      task = FactoryBot.create(:task)
+      delete :destroy, params: { id: task.id }
+      expect(response).to redirect_to root_path
+      task = Task.find_by_id(task.id)
+      expect(task).to eq nil
+    end
+
+    it "should return a 404 message if we cannot find a task with the id that is specified" do
+      delete :destroy, params: { id: 'SILLY' }
+      expect(response).to have_http_status(:not_found)
+    end
+  end
+
   describe "tasks#update" do
     it "should allow users to successfully update tasks" do
       task = FactoryBot.create(:task, message: "Initial Value")
