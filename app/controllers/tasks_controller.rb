@@ -8,7 +8,11 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.create(task_params)
-    redirect_to root_path
+    if @task.valid?
+      redirect_to root_path
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   private

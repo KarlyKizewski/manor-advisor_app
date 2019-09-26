@@ -23,5 +23,11 @@ RSpec.describe TasksController, type: :controller do
       task = Task.last
       expect(task.message).to eq("Get home together!")
     end
+
+    it "should properly deal with validation errors" do
+      post :create, params: { task: { message: '' } }
+      expect(response).to have_http_status(:unprocessable_entity)
+      expect(Task.count).to eq 0
+    end
   end
 end
