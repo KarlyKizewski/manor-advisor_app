@@ -11,9 +11,7 @@ class TasksController < ApplicationController
 
   def show
     @task = Task.find_by_id(params[:id])
-    if @task.blank?
-      render plain: 'Not Found', status: :not_found
-    end
+    return render_not_found if @task.blank?
   end
 
   def create
@@ -25,11 +23,20 @@ class TasksController < ApplicationController
     end
   end
 
+  def edit
+    @task = Task.find_by_id(params[:id])
+    return render_not_found if @task.blank?
+  end
+
 
 
   private
 
   def task_params
     params.require(:task).permit(:message)
+  end
+
+  def render_not_found
+    render plain: 'Not Found', status: :not_found
   end
 end

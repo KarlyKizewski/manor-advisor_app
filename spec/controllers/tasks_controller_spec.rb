@@ -1,6 +1,35 @@
 require 'rails_helper'
 
 RSpec.describe TasksController, type: :controller do
+
+  describe "tasks#update" do
+    it "should allow users to successfully update tasks" do
+    
+    end
+
+    it "should have http 404 error if the task cannot be found" do
+
+    end
+
+    it "should render the edit form with an http status of unprocessable_entity" do
+
+    end
+  end
+
+  describe "tasks#edit action" do
+    it "should successfully show the edit form if the task is found" do
+      task = FactoryBot.create(:task)
+      get :edit, params: { id: task.id }
+      expect(response).to have_http_status(:success)
+    end
+
+    it "should return a 404 error message if the task is not found" do
+      get :edit, params: { id: 'OOPS' }
+      expect(response).to have_http_status(:not_found)
+    end
+
+  end
+
   describe "tasks#show action" do
     it "should successfully show the page if the task is found" do
       task = FactoryBot.create(:task)
