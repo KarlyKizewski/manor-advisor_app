@@ -15,11 +15,7 @@ RSpec.describe TasksController, type: :controller do
     end
 
     it "should successfully show the new form" do
-      user = User.create(
-        email: 'fake@gmail.com',
-        password: 'password',
-        password_confirmation: 'password'
-      )
+      user = FactoryBot.create(:user)
       sign_in user 
 
       get :new
@@ -34,11 +30,7 @@ RSpec.describe TasksController, type: :controller do
     end
 
     it "should successfully create a new task in the database" do
-      user = User.create(
-        email: 'fake@gmail.com',
-        password: 'password',
-        password_confirmation: 'password'
-      )
+      user = FactoryBot.create(:user)
       sign_in user
 
       post :create, params: { task: { message: 'Get home together!' } }
@@ -50,11 +42,7 @@ RSpec.describe TasksController, type: :controller do
     end
 
     it "should properly deal with validation errors" do
-      user = User.create(
-        email: 'fake@gmail.com',
-        password: 'password',
-        password_confirmation: 'password'
-      )
+      user = FactoryBot.create(:user)
       sign_in user
 
       task_count = Task.count
