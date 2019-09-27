@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   def new
     @task = Task.new
@@ -26,11 +26,13 @@ class TasksController < ApplicationController
   def edit
     @task = Task.find_by_id(params[:id])
     return render_not_found if @task.blank?
+    return render_not_found(:forbidden) if @task.user != current_user
   end
 
   def update
     @task = Task.find_by_id(params[:id])
     return render_not_found if @task.blank?
+    return render_not_found(:forbidden) if @task.user != current_user
     @task.update_attributes(task_params)
     if @task.valid?
      redirect_to root_path
@@ -42,6 +44,7 @@ class TasksController < ApplicationController
   def destroy
     @task = Task.find_by_id(params[:id])
     return render_not_found if @task.blank?
+    return render_not_found(:forbidden) if @task.user != current_user
     @task.destroy
     redirect_to root_path
   end  
@@ -52,7 +55,7 @@ class TasksController < ApplicationController
     params.require(:task).permit(:message)
   end
 
-  def render_not_found
-    render plain: 'Not Found', status: :not_found
+  def render_not_found(status=:not_found)
+    render plain: "#{status.to_s.titleize}", status: status
   end
 end
