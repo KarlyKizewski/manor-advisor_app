@@ -11,4 +11,9 @@ FactoryBot.define do
     message { "hello" }
     association :user
   end
+
+  factory :clean do
+    message { "clean" }
+    association :user
+  end
 end
