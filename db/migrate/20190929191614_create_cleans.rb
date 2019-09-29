@@ -1,6 +1,6 @@
-class CreateTasks < ActiveRecord::Migration[5.2]
+class CreateCleans < ActiveRecord::Migration[5.2]
   def change
-    create_table :tasks do |t|
+    create_table :cleans do |t|
       t.string :spring
       t.string :summer
       t.string :fall

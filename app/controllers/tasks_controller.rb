@@ -5,8 +5,8 @@ class TasksController < ApplicationController
     @task = Task.new
   end
 
-
   def index
+    @tasks = Task.all
   end
 
   def show

@@ -1,1 +1,16 @@
-<h1>Tasks</h1>
+<div class="row">
+  <% @tasks.each do |task| %>
+    <div class="tasks col-2">
+        <p>
+          <%= task.spring %>
+          <br />
+          <%= task.summer %>
+          <br />
+          <%= task.fall %>
+          <br />
+          <%= task.winter %>
+        </p>
+      </div>
+  <% end %>
+</div>
+
