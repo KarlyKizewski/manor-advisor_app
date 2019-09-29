@@ -5,6 +5,7 @@ class CreateTasks < ActiveRecord::Migration[5.2]
       t.string :summer
       t.string :fall
       t.string :winter
+      t.text :message
       t.timestamps
     end
   end

@@ -1,0 +1,15 @@
+<div class="row">
+  <% @cleans.each do |clean| %>
+    <div class="tasks col-2">
+        <p>
+          <%= clean.spring %>
+          <br />
+          <%= clean.summer %>
+          <br />
+          <%= clean.fall %>
+          <br />
+          <%= clean.winter %>
+        </p>
+      </div>
+  <% end %>
+</div>

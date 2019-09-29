@@ -11,7 +11,7 @@ RSpec.describe TasksController, type: :controller do
       expect(response).to have_http_status(:forbidden)
     end
 
-    it "shouldn't let unauthenticated users destroy a gram" do
+    it "shouldn't let unauthenticated users destroy a task" do
       task = FactoryBot.create(:task)
       delete :destroy, params: { id: task.id }
       expect(response).to redirect_to new_user_session_path

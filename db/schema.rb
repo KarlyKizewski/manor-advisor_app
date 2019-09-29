@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2019_09_29_191758) do
     t.string "summer"
     t.string "fall"
     t.string "winter"
+    t.text "message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
@@ -31,6 +32,7 @@ ActiveRecord::Schema.define(version: 2019_09_29_191758) do
     t.string "summer"
     t.string "fall"
     t.string "winter"
+    t.text "message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
