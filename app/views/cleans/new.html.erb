@@ -2,10 +2,9 @@
   <h1>Cleans</h1>
 
   <%= simple_form_for @clean do |f| %>
-    <%= f.input :spring %>
-    <%= f.input :summer %>
-    <%= f.input :fall %>
-    <%= f.input :winter %>
+    <%= f.input :daily %>
+    <%= f.input :weekly %>
+    <%= f.input :monthly %>
     <%= f.input :message %>
     <%= f.submit "Add to My List" %>
   <% end %>

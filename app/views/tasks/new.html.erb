@@ -2,7 +2,7 @@
   <h1>Tasks</h1>
 
   <%= simple_form_for @task do |f| %>
-    <%= f.input :spring %>
+    <%= f.input :spring, as: :radio_buttons %>
     <%= f.input :summer %>
     <%= f.input :fall %>
     <%= f.input :winter %>

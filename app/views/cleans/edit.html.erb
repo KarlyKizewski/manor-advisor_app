@@ -1,9 +1,8 @@
 <div class="booyah-box col-8 offset-2">
 <%= simple_form_for @task do |f| %>
-  <%= f.input :spring %>
-  <%= f.input :summer %>
-  <%= f.input :fall %>
-  <%= f.input :winter %>
+  <%= f.input :daily %>
+  <%= f.input :weekly %>
+  <%= f.input :monthly %>
   <%= f.input :message %>
   <%= f.submit %>
 <% end %>

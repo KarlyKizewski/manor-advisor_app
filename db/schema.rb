@@ -16,10 +16,9 @@ ActiveRecord::Schema.define(version: 2019_09_29_191758) do
   enable_extension "plpgsql"
 
   create_table "cleans", force: :cascade do |t|
-    t.string "spring"
-    t.string "summer"
-    t.string "fall"
-    t.string "winter"
+    t.string "daily"
+    t.string "weekly"
+    t.string "monthly"
     t.text "message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -1,16 +1,123 @@
-<div class="row">
-  <% @tasks.each do |task| %>
-    <div class="tasks col-2">
-        <p>
-          <%= task.spring %>
-          <br />
-          <%= task.summer %>
-          <br />
-          <%= task.fall %>
-          <br />
-          <%= task.winter %>
-        </p>
-      </div>
-  <% end %>
+<script>
+$(function(){
+  var $curParent, Content;
+  $(document).delegate("span","click", function(){
+    if($(this).closest("s").length) {
+      Content = $(this).parent("s").html();
+      $curParent = $(this).closest("s");
+      $(Content).insertAfter($curParent);
+      $(this).closest("s").remove();
+    }
+    else {
+      $(this).wrapAll("<s />");
+    }
+  });
+});
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<div class="task_suggestions col-10 offset-1">
+  <div class="row">
+    <div class="intervals col-6">
+      <h1 class="text-center">Monthly</h1>
+        <span>Inspect/possibly change out HVAC filters.</span>
+        <p>Clean kitchen sink disposal.</p>
+        <p>Clean range hood filters.</p>
+        <p>Inspect fire extinguisher(s).</p>
+    </div>
+    <div class="intervals col-6 text-right">
+      <h1 class="text-center">Quarterly</h1>
+        <p>Test smoke/carbon dioxide detectors.</p>
+        <p>Test garage door auto-reserve feature.</p>
+        <p>Run water and flush toilets in unused spaces.</p>
+        <p>Check water softener, add salt if needed.</p>
+    </div>
+  </div>
 </div>
+<hr />
+<div class="task_suggestions col-8 offset-2 text-center">
+  <h1>Biannually</h1>
+    <p>Test your water heater's pressure relief valve.</p>
+    <p>Give your house a deep clean.</p>
+    <p>Replace batteries in smoke/carbon dioxide detectors.</p>
+    <p>Vacuum your refrigerator coils.</p>
+</div>
+<hr />
+<div class="task_suggestions col-10 offset-1">
+      <h1 class="text-center">Spring</h1>
+        <p>Rake remaining leaves and debris from last fall/winter.</p>
+        <p>Add thin layer of mulch to beds.</p>
+        <p>Turn outside faucets back on - check for damage.</p>
+        <p>Check exterior drainage - flowing away from home.</p>
+        <p>Clean out gutters.</p>
+        <p>Inspect exterior - siding, brick, paint, & foundation.</p>
+        <p>Get air conditioning system ready for summer. Service and checkup with HVAC technician for ductwork damage, furnace and A/C compressor. Clean bathroom vents.</p>
+        <p>Window-unit A/C: clean and/or replace filters.</p>
+        <p>Plumbing: examine pipes, look for leaks, faucet drips, flapper in toilet tank.</p>
+        <p>Repair/replace damaged window screens.</p>
+        <p>Clear dead plants/shrubs from house - especially vines.</p>
+        <p>Check trees for interference with electric lines. See if any are dead - remove them.</p>
+        <p>Inspect roofing for damage, leaks, loose shingles, & sagging.</p>
+        <p>Mower tuneup for new year of use and first mowing session.</p>
+        <p>Remove storm windows.</p>
+        <p>Powerwash.</p>
+        <p>If have pool/hottub, check valves and filters, inspect equipment/chemicals & service for new season.</p>
+    <hr />
+      <h1 class="text-center">Summer</h1>
+        <p>Check grout in bathrooms, kitchen, etc. Repair as needed.</p>
+        <p>Inspect plumbing for leaks, clean aerators on faucets.</p>
+        <p>Take care of any insect problems.</p>
+        <p>Clean and repair deck/patio as needed.</p>
+        <p>clean out window wells of debris.</p>
+        <p>Check and clean dryer vent and other exhaust vents to exterior of home.</p>
+        <p>Clean garbage container.</p>
+        <p>Dig up weeds. Water plants. Deadhead flowers.</p>
+        <p>Check sprinkler system, one head at a time. Get serviced if needed.</p>
+        <p>Scrub pool once or twice a month to keep algae frowth under control. Check filter basket and chemicals weekly.</p>
+        <p>If painting exterior, do it in summer.</p>
+        <p>Reverse ceiling fans to counterclockwise - pushing air down.</p>
+        <p>Clean air conditioning filters once a month.</p>
+        <p>Prepare disaster supply kit - specific to potential in your area. Check weather stripping around windows and doors.</p>
+        <p>Establish emergency plan - evacuation, escape routes, emergency contacts.</p>
+        <p>Watch for bug & pest infestations - attics and basements.</p>
+        <p>Conduct any home improvement projects.</p>
+    <hr />
+      <h1 class="text-center">Fall</h1>
+        <p>Flush hot water heater and remove sediment.</p>
+        <p>Winterize air conditioning systems.</p>
+        <p>Get heating system ready for winter.</p>
+        <p>Check for leaks in windows and doors.</p>
+        <p>Turn off and flush outdoor water faucets.</p>
+        <p>Get chimney cleaned, if you have one.</p>
+        <p>Test sump pump.</p>
+        <p>Check driveway/pavement for cracks - can expand with water freezing.</p>
+        <p>Buy winter gear - shovels and salt at least.</p>
+        <p>Plant perennials/trees.</p>
+        <p>Rake leaves. Can mow over leaves once a week to break them down and provide nutrients.</p>
+        <p>Remove gutter debris before first snowfall/freeze. Roll up hoses. Turn off outdoor faucets.</p>
+        <p>Turn off sprinkler system. Shut off water supply. Insulate valve and above-ground piping. Turn off timer and drain remaining water from system.</p>
+        <p>Stock up on firewood - keep covered & don't pack too tightly.</p>
+        <p>Clean and close cover to pool for winter.</p>
+        <p>Cover window A/C units and check seal for gaps OR remove from window and store upright.</p>
+        <p>Get furnace and ductwork serviced. Check and replace air filters, test thermostat. Ensure heating vents are open.</p>
+        <p>For steam heating, get boiler checked and sediment drained. Get radiator valves checked.</p>
+        <p>Have chimney cleaned and inspected.</p>
+        <p>Indoor home improvement projects?</p>
+    <hr />
+      <h1 class="text-center">Winter</h1>
+        <p>Regularly check for ice dams and iciciles.</p>
+        <p>Test your electricity to the extent that you can - outlets, switches, & GFCI outlets.</p>
+        <p>Tighten any handles, knobs, & racks - loose screws.</p>
+        <p>Check all locks and deadbolts on doors and windows.</p>
+        <p>Check caulking around showers and bathtubs; repair as needed.</p>
+        <p>Remove showerheads and clean sediment.</p>
+        <p>Deep clean and inspect basement: mold, ,windows, foundation.</p>
+        <p>Change heating filters once a month.</p>
+        <p>Insulate outdoor pipes.</p>
+        <p>On colder days, keep cabinets below sink open to allow warm air to heat pipe.</p>
+        <p>Secure portable generator - make sure fuel doesn't sit for long periods.</p>
+        <p>Stock for potential winter storm and closings.</p>
+</div>
+
 
