@@ -1,5 +1,5 @@
 class CleansController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   def index
     @cleans = Clean.all
   end
@@ -38,6 +38,14 @@ class CleansController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @clean = Clean.find_by_id(params[:id])
+    return render_not_found if @clean.blank?
+    return render_not_found(:forbidden) if @clean.user != current_user
+    @clean.destroy
+    redirect_to root_path
   end
 
   private
