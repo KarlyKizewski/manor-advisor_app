@@ -88,4 +88,45 @@ RSpec.describe CleansController, type: :controller do
       expect(response).to have_http_status(:not_found)
     end
   end
+
+  describe "cleans#update action" do
+    it "shouldn't let users who didn't create the clean update it" do
+      clean = FactoryBot.create(:clean)
+      user = FactoryBot.create(:user)
+      sign_in user
+      patch :update, params: { id: clean.id, task: { message: 'ZUU' } }
+      expect(response).to have_http_status(:forbidden)
+    end
+
+    it "shouldn't let unauthenticated users update a clean" do
+      clean = FactoryBot.create(:clean)
+      patch :update, params: { id: clean.id, clean: { message: 'Hello' } }
+      expect(response).to redirect_to new_user_session_path
+    end
+
+    it "should allow users to successfully update cleans" do
+      clean = FactoryBot.create(:clean)
+      sign_in clean.user
+      patch :update, params: { id: clean.id, clean: { message: "Changed" } }
+      expect(response).to redirect_to root_path
+      clean.reload
+      expect(clean.message).to eq "Changed"
+    end
+
+    it "should have http 404 error if the clean cannot be found" do
+      user = FactoryBot.create(:user)
+      sign_in user
+      patch :update, params: { id: "Howdy", clean: { message: "Changed" } }
+      expect(response).to have_http_status(:not_found)
+    end
+
+    it "should render the edit form with an http status of unprocessable_entity" do
+      clean = FactoryBot.create(:clean, message: "Initial value")
+      sign_in clean.user
+      patch :update, params: { id: clean.id, clean: { message: '' } }
+      expect(response).to have_http_status(:unprocessable_entity)
+      clean.reload
+      expect(clean.message).to eq "Initial value"
+    end
+  end
 end
