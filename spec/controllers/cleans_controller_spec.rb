@@ -59,4 +59,33 @@ RSpec.describe CleansController, type: :controller do
       expect(response).to have_http_status(:not_found)
     end
   end
+
+  describe "cleans#edit action" do
+    it "shouldn't let a user who did not create the clean edit the clean" do
+      clean = FactoryBot.create(:clean)
+      user = FactoryBot.create(:user)
+      sign_in user
+      get :edit, params: { id: clean.id }
+      expect(response).to have_http_status(:forbidden)
+    end
+
+    it "shouldn't let unauthenticated users edit a clean" do
+      clean = FactoryBot.create(:clean)
+      get :edit, params: { id: clean.id }
+      expect(response).to redirect_to new_user_session_path
+    end
+
+    it "should successfully show the edit form if the clean is found" do
+      clean = FactoryBot.create(:clean)
+      get :edit, params: { id: clean.id }
+      expect(response).to redirect_to new_user_session_path
+    end
+
+    it "should return a 404 error message if the clean is not found" do
+      user = FactoryBot.create(:user)
+      sign_in user
+      get :edit, params: { id: 'OOPS' }
+      expect(response).to have_http_status(:not_found)
+    end
+  end
 end
