@@ -129,4 +129,36 @@ RSpec.describe CleansController, type: :controller do
       expect(clean.message).to eq "Initial value"
     end
   end
+
+  describe "cleans#destroy action" do
+    it "shouldn't allow users who did not create the clean to destroy it" do
+      clean = FactoryBot.create(:clean)
+      user = FactoryBot.create(:user)
+      sign_in user
+      delete :destroy, params: { id: clean.id }
+      expect(response).to have_http_status(:forbidden)
+    end
+
+    it "should't let unauthenticated users destroy a clean" do
+      clean = FactoryBot.create(:clean)
+      delete :destroy, params: { id: clean.id }
+      expect(response).to redirect_to new_user_session_path
+    end
+
+    it "should allow a user to destroy cleans" do
+      clean = FactoryBot.create(:clean)
+      sign_in clean.user
+      delete :destroy, params: { id: clean.id }
+      expect(response).to redirect_to root_path
+      clean = Clean.find_by_id(clean.id)
+      expect(clean).to eq nil
+    end
+
+    it "should return a 404 message if we cannot find a clean with the same id that is specified" do
+      user = FactoryBot.create(:user)
+      sign_in user
+      delete :destroy, params: { id: 'SILLY' }
+      expect(response).to have_http_status(:not_found)
+    end
+  end
 end
