@@ -46,4 +46,17 @@ RSpec.describe CleansController, type: :controller do
       expect(clean_count).to eq Clean.count 
     end
   end
+
+  describe "cleans#show action" do
+    it "should successfully show the page if the clean is found" do
+      clean = FactoryBot.create(:clean)
+      get :show, params: { id: clean.id }
+      expect(response).to have_http_status(:success)
+    end
+
+    it "should return a 404 error if the clean is not found" do
+      get :show, params: { id: 'NADA' }
+      expect(response).to have_http_status(:not_found)
+    end
+  end
 end
