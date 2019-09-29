@@ -1,5 +1,5 @@
 class CleansController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create, :edit]
   def index
     @cleans = Clean.all
   end
@@ -20,6 +20,12 @@ class CleansController < ApplicationController
   def show
     @clean = Clean.find_by_id(params[:id])
     return render_not_found if @clean.blank?
+  end
+
+  def edit
+    @clean = Clean.find_by_id(params[:id])
+    return render_not_found if @clean.blank?
+    return render_not_found(:forbidden) if @clean.user != current_user
   end
 
   private
