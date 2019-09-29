@@ -21,4 +21,29 @@ RSpec.describe CleansController, type: :controller do
     end
   end
 
+  describe "cleans#create action" do
+    it "should require users to be logged in" do
+      post :create, params: { clean: { message: "Home" } }
+      expect(response).to redirect_to new_user_session_path
+    end
+
+    it "should successfully create a new task in the database" do
+      user = FactoryBot.create(:user)
+      sign_in user
+      post :create, params: { clean: { message: "Get home clean!" } }
+      expect(response).to redirect_to root_path
+      clean = Clean.last
+      expect(clean.message).to eq("Get home clean!")
+      expect(clean.user).to eq(user)
+    end
+
+    it "should properly deal with validation errors" do
+      user = FactoryBot.create(:user)
+      sign_in user 
+      clean_count = Clean.count 
+      post :create, params: { clean: { message: '' } }
+      expect(response).to have_http_status(:unprocessable_entity)
+      expect(clean_count).to eq Clean.count 
+    end
+  end
 end
