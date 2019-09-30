@@ -1,4 +1,5 @@
 @import "bootstrap";
+@import url('https://fonts.googleapis.com/css?family=Karla&display=swap');
 
 .manor img {
   max-width: 100%;
@@ -22,6 +23,16 @@ label {
 }
 
 .task_suggestions img {
-  max-height: 100px;
-  max-width: 100px;
+  max-height: 125px;
+  max-width: 125px;
 }
+
+body {
+  font-family: 'Karla', sans-serif;
+}
+
+p {
+  margin: 0.3px;
+}
+
+
