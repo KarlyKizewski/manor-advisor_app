@@ -4,4 +4,15 @@ Rails.application.routes.draw do
   root "tasks#index"
   resources :tasks
   resources :cleans
+  get 'interval_tasks', to: "tasks#interval_tasks"
+  get 'spring', to: "tasks#spring"
+  get 'summer', to: "tasks#summer"
+  get 'fall', to: "tasks#fall"
+  get 'winter', to: "tasks#winter"
+  get 'moving', to: "tasks#moving"
+  get 'home_lifespans', to: "tasks#home_lifespans"
+  get 'biannual', to: "cleans#biannual"
+  get 'daily', to: "cleans#daily"
+  get 'interval_cleans', to: "cleans#interval_cleans"
+  get 'vinegar', to: "cleans#vinegar"
 end

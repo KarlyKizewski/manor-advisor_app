@@ -1,6 +1,27 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
+  def interval_tasks
+  end
+
+  def spring
+  end
+
+  def summer
+  end
+
+  def fall
+  end
+
+  def winter
+  end
+
+  def moving
+  end
+
+  def home_lifespans
+  end
+
   def new
     @task = Task.new
   end

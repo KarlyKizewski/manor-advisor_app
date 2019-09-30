@@ -8,6 +8,18 @@ class CleansController < ApplicationController
     @clean = Clean.new
   end
 
+  def biannual
+  end
+
+  def daily
+  end
+
+  def interval_cleans
+  end
+
+  def vinegar
+  end
+
   def create
     @clean = current_user.cleans.create(clean_params)
     if @clean.valid?
