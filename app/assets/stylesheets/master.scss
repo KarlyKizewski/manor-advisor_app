@@ -1,16 +1,17 @@
 @import "bootstrap";
-@import url('https://fonts.googleapis.com/css?family=Mansalva&display=swap');
 
-.manor {
-  font-family: 'Mansalva', cursive;
+.manor img {
+  max-width: 100%;
+  max-height: 100%;
 }
 
-.tasks {
-  background-color: #F3F1F1;
-  margin: 5px;
-}
 
 input,
 label {
     margin: .4rem 0;
+}
+
+.sign img {
+  max-width: 50px;
+  max-height: 50px;
 }

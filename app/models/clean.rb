@@ -1,5 +1,6 @@
 class Clean < ApplicationRecord
-  validates :message, presence: true
+  validates :date, presence: true
 
   belongs_to :user
+  has_many :dates
 end
