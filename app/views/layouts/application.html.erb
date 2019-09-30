@@ -10,37 +10,37 @@
   
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
-
   </head>
+
+
 
   <body>
 
-<div class="manor col-8 offset-2">
-<%= link_to root_path do %>
-  <%= image_tag "manoradvisor.png" %>
-<% end %>
-</div>
+    <div class="manor col-8 offset-2">
+      <%= link_to image_tag("manoradvisor.png"), root_path %>
+    </div>
 
 
-<div class="sign text-center">
-      <% if current_user %>
-          You are signed in as <%= current_user.email %>.
-          <%= link_to image_tag("out.png"), destroy_user_session_path, method: :delete %>
-      <% else %>
-          <%= link_to image_tag("in.png"), new_user_session_path %>
-          <%= link_to image_tag("up.png"), new_user_registration_path %>
-      <% end %>
-</div>
+    <div class="sign col-10 offset-1 text-right">
+          <% if current_user %>
+              You are signed in as <%= current_user.email %>.
+              <%= link_to image_tag("out.png"), destroy_user_session_path, method: :delete %>
+          <% else %>
+              <%= link_to image_tag("in.png"), new_user_session_path %>
+              <%= link_to image_tag("up.png"), new_user_registration_path %>
+          <% end %>
+    </div>
 
-      <% if notice.present? %>
-        <p class="alert alert-info"><%= notice %></p>
-      <% end %>
-      <% if alert.present? %>
-        <p class="alert alert-danger"><%= alert %></p>
-      <% end %>
+    <div class="alert col-8 offset-2 text-center">
+          <% if notice.present? %>
+            <p class="alert alert-info"><%= notice %></p>
+          <% end %>
+          <% if alert.present? %>
+            <p class="alert alert-danger"><%= alert %></p>
+          <% end %>
+    </div>
 
-      <%= link_to "Daily Cleans", daily_path %>
-
+    <hr class="col-10 offset-1" />
 
     <%= yield %>
 
